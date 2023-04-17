@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        .welcome {
+            height: 5rem;
+        }
+        .top {
+            border: 1px solid black;
+            width: 90%;
+            height: 58%;
+        }
+        .btns  {
+            display: flex;
+            /* flex-wrap: wrap; */
+            gap: 20px;
+
+        }
+         button {
+            width: 10rem;
+        }
+       
+        select:focus {
+            outline: 1px solid rgb(69, 69, 224);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="welcome bg-warning ">
+            <p class="container col-md-5 fs-3 fw-bold text-white ">
+                Welcome? Load your Recharge Card
+            </p>
+        </div>
+        <section class="top container d-flex">
+            <section class="topLeft pe-4 border-2 border-end w-50">
+                <div>
+                    <p class="fs-4 fw-bold text-danger">Choose Network</p>
+                    <select class="form-control bg-danger text-white w-100" name="" id="chooseNetwork">
+                        <option value="">Select Network...</option>
+                        <option id="airtel" value="airtel">Airtel</option>
+                        <option id="mtn" value="mtn">MTN</option>
+                        <option id="glo" value="glo">Glo</option>
+                        <option id="etisalt" value="etisalat">Etisalat</option>
+                    </select>
+                </div>
+                <div class="mt-2">
+                    <p class="fs-4 fw-bold text-info">Choose Amount</p>
+                    <select class="form-control bg-info w-100" name="" id="chooseAmount">
+                        <option value="">Amount</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                   
+                </div>
+                <div class="mt-2">
+                    <p class="fs-4 fw-bold text-primary">Generate Pin</p>
+                    <input class="form-control bg-primary text-white w-100 text-black" type="text" name="" id="generateInput" placeholder="Pin" required>
+                </div>
+                <div class="btns container col-md-8 mt-3 d-flex ">
+                    <button class="bg-success text-white p-1 border border-0" onclick="generatePin()">GENERATE PIN</button>
+                    <button class="bg-warning p-1 border border-0" onclick="savePin()">SAVE PIN</button>
+                
+                </div>
+
+            </section>
+           
+            <section class="topRight w-50">
+                <div class="ps-4 pe-4 mt-2">
+                    <input class="form-control w-100 " type="text" name="" id="rechargeInput" required>
+                    <button class="bg-success rounded-pill text-white p-2 mt-4 border border-0" onclick="rechargeCard()">RECHARGE CARD</button>
+                </div>
+            </section>    
+        </section>
+
+        <section class="history container">
+            <div class="text-center">
+                <p class="fs-3">History</p>
+            </div>
+            <table class="table table-bordered table-striped-columns ">
+                <thead>
+                    <tr>
+                        <th scope="col">S/N</th>
+                        <th scope="col">NETWORK PROVIDER</th>
+                        <th scope="col">AMOUNT</th>
+                        <th scope="col">PIN</th>
+                        <th scope="col">PRINTREF</th>
+                        <th scope="col">DATE PRINTED</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">DELETE</button></th>
+                    </tr>
+                </thead>
+                <!-- <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>MTN</td>
+                        <td>4/3/2023</td>
+                        <td>100</td>
+                        <td>2344567890</td>
+                        <td>load</td>
+                        <td></td>
+                    
+                    </tr>
+                </tbody> -->
+            </table>
+
+        </section>
+
+                    
+    </section>
+    
+
+
+    <script src="./rechargeCard.js"></script>
+</body>
+</html>
