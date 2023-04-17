@@ -11,6 +11,7 @@
         .welcome {
             height: 5rem;
         }
+        
         .top {
             border: 1px solid black;
             width: 90%;
@@ -35,7 +36,7 @@
     <section>
         <div class="welcome bg-warning ">
             <p class="container col-md-5 fs-3 fw-bold text-white ">
-                Welcome? Load your Recharge Card
+               <marquee behavior="" direction="right">Welcome? Load your Recharge Card</marquee>
             </p>
         </div>
         <section class="top container d-flex">
@@ -85,7 +86,7 @@
             <div class="text-center">
                 <p class="fs-3">History</p>
             </div>
-            <table class="table table-bordered table-striped-columns ">
+            <table class="table  table-bordered table-striped-columns ">
                 <thead>
                     <tr>
                         <th scope="col">S/N</th>
@@ -98,19 +99,9 @@
                         <th scope="col">DELETE</button></th>
                     </tr>
                 </thead>
-                <!-- <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>MTN</td>
-                        <td>4/3/2023</td>
-                        <td>100</td>
-                        <td>2344567890</td>
-                        <td>load</td>
-                        <td></td>
-                    
-                    </tr>
-                </tbody> -->
+                <tbody id="tableDisplay"></tbody>
             </table>
+
 
         </section>
 
