@@ -48,11 +48,11 @@ function savePin() {
         tableDisplay.innerHTML += `<tbody>
 						<tr>
 							<th scope='row'>${index + 1}</th>
-							<td>${element[index].network}</td>
-							<td>${element[index].amount}</td>
-							<td>${element[index].pin}</td>
-							<td>${element[index].printRef}</td>
-							<td>${element[index].date}</td>
+							<td>${element.network}</td>
+							<td>${element.amount}</td>
+							<td>${element.pin}</td>
+							<td>${element.printRef}</td>
+							<td>${element.date}</td>
 							<td>${
 								element.status == false
 									? `<span>UNUSED</span>`
@@ -74,7 +74,7 @@ function Del(index) {
 
 function rechargeCard() {
     rechargeInput.value = ''
-    if (rechargeInput.value = ` *555* ${generatePinInput.value}`) {
+    if (rechargeInput.value = ` *555* ${generatePinInptut.value}`) {
         alert('yes valid')
         
     }
