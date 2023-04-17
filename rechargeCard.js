@@ -16,7 +16,7 @@ function getRandom() {
 }
 
 function generatePin() {
-   let printRef;
+    let printRef;
     
     generatePinInput.value = getRandom();
 
