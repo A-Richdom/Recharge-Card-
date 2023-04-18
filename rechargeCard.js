@@ -45,8 +45,7 @@ function generatePin() {
 function savePin() {
     tableDisplay.innerHTML = "";
     data.forEach(function(element, index){ 
-        tableDisplay.innerHTML += `<tbody>
-						<tr>
+        tableDisplay.innerHTML += `<tr>
 							<th scope='row'>${index + 1}</th>
 							<td>${element.network}</td>
 							<td>${element.amount}</td>
@@ -58,24 +57,27 @@ function savePin() {
 									? `<span>UNUSED</span>`
 									: `<span>USED</span>`
 							}</td>
-							<td><button class="bg-danger" onclick="Del()">DELETE</button></td>
-						</tr>
-					</tbody>`;
+							<td><button class="bg-danger" onclick="Del(${index})">DELETE</button></td>
+						</tr>`;
         
     });
+   
+        
+		}
             console.log(savePin);
 
-}
+
 
 function Del(index) {
     data.splice(index, 1)
-    savePin()
+    savePin();
 }
 
 function rechargeCard() {
     rechargeInput.value = ''
-    if (rechargeInput.value = ` *555* ${generatePinInptut.value}`) {
-        alert('yes valid')
+    if (rechargeInput.value = ` *555* ${generatePinInput.value}`) {
+        alert ('Recharge Successful')
         
     }
+    console.log(rechargeCard);
 }
