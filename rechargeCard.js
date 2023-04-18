@@ -10,11 +10,12 @@ let mm = today.getMonth();
 let yy = today.getFullYear();
 let data = [];
 
-
+// to get random number
 function getRandom() {
     return Math.floor(Math.random() * 10000000000)
 }
 
+// to generate pin
 function generatePin() {
     let printRef;
     
@@ -42,6 +43,7 @@ function generatePin() {
     data.push(rechargeData)
 }
 
+// to save pin to the table below
 function savePin() {
     tableDisplay.innerHTML = "";
     data.forEach(function(element, index){ 
@@ -61,23 +63,35 @@ function savePin() {
 						</tr>`;
         
     });
-   
-        
+      
 		}
-            console.log(savePin);
+            console.log(savePin)
 
-
-
+// to delete each row
 function Del(index) {
     data.splice(index, 1)
     savePin();
 }
 
+// to recharge card
 function rechargeCard() {
+
     rechargeInput.value = ''
-    if (rechargeInput.value = ` *555* ${generatePinInput.value}`) {
-        alert ('Recharge Successful')
-        
+     if (chooseNetwork.value == "airtel") {
+         alert("Recharge Successful");
+         rechargeInput.value = ` *126${generatePinInput.value}`
     }
+     else if (chooseNetwork.value == "mtn") {
+         alert("Recharge Successful");
+		 rechargeInput.value = ` *555*${generatePinInput.value}`;
+		}
+     else if (chooseNetwork.value == "glo") {
+         alert("Recharge Successful");
+		 rechargeInput.value = ` *123*${generatePinInput.value}`;
+		}
+     else if (chooseNetwork.value == "etisalat") {
+         alert("Recharge Successful");
+		 rechargeInput.value = ` *222*${generatePinInput.value}`;
+		}
     console.log(rechargeCard);
 }
