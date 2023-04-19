@@ -80,8 +80,6 @@ function rechargeCard() {
 
 	let findCard = data.find((elem) => elem.printRef === rechargeInput.value);
 	// if (!findCard) return
-	// staticBackdrop.innerHTML;
-	// alert('invalid card')
 	// if (!printRef == rechargeInput.value) {
 	//     alert("Invalid Card");
 	//     return
