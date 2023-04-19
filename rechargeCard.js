@@ -4,18 +4,21 @@ let chooseAmount = document.getElementById("chooseAmount");
 let generatePinInput = document.getElementById("generatePinInput");
 let chooseNetwork = document.getElementById("chooseNetwork");
 let rechargeInput = document.getElementById("rechargeInput");
+let staticBackdrop = document.getElementById("staticBackdrop");
 let today = new Date();
 let dd = today.getDate();
 let mm = today.getMonth();
 let yy = today.getFullYear();
 let data = [];
 
-// to get random number
+
+// TO GET RANDOM NUMBER
 function getRandom() {
 	return Math.floor(Math.random() * 10000000000);
 }
 
-// to generate pin
+
+// TO GENERATE PIN
 function generatePin() {
 	generatePinInput.value = getRandom();
 }
@@ -36,9 +39,17 @@ function display() {
 	});
 }
 
-// to save pin to the table below
+
+// TO SAVE PIN TO THE BELOW TABLE 
 function savePin() {
-	let printRef;
+    if (generatePinInput.value == '') {
+        tableDisplay.innerHTML = ''
+        alert('You have Nothing to Save')
+        return
+    }
+    
+    let printRef;
+	
 	if (chooseNetwork.value == "airtel") {
 		printRef = `*126*${generatePinInput.value}#`;
 	}
@@ -53,59 +64,63 @@ function savePin() {
 
 	if (chooseNetwork.value == "etisalat") {
 		printRef = `*222*${generatePinInput.value}#`;
-	}
+    }
+    
+    let rechargeData = {
+			network: chooseNetwork.value,
+			amount: chooseAmount.value,
+			pin: generatePinInput.value,
+			printRef: printRef,
+			date: dd + "/" + mm + "/" + yy,
+			status: false,
+		};
 
-	let rechargeData = {
-		network: chooseNetwork.value,
-		amount: chooseAmount.value,
-		pin: generatePinInput.value,
-		printRef: printRef,
-		date: dd + "/" + mm + "/" + yy,
-		status: false,
-	};
-
-	data.push(rechargeData);
-
+		data.push(rechargeData);
+	
 	display();
+};
 
-	// if (rechargeInput.value == ` *126${generatePinInput.value}`) {
-	// 		alert("tsjhssjssj");
-	// 	}
-}
-console.log(savePin);
 
-// to delete each row
+// TO DELETE EACH ROW
 function Del(index) {
 	data.splice(index, 1);
 	display();
 }
 
-// to recharge card
+
+// TO RECHARGE CARD
 function rechargeCard() {
+    
 	if (!rechargeInput.value) {
-		alert("input someting");
+		alert("Input Recharge Card");
+        // staticBackdrop.innerHTML
 	}
 
-	let findCard = data.find((elem) => elem.pin === generatePinInput.value);
-	// console.log(find, 'this is the card u wanna load');
-	data.forEach((elem) => {
-		if (elem.printRef === rechargeInput.value) {
+    let findCard = data.find((elem) => elem.printRef === rechargeInput.value);
+    // if (!findCard) return
+    // staticBackdrop.innerHTML;
+    // alert('invalid card')
+    // if (!printRef == rechargeInput.value) {
+    //     alert("Invalid Card");
+    //     return
+	// 	}
+		
+
+    data.forEach((elem) => {
+      
+        if (elem.printRef === rechargeInput.value) {
 			if (findCard.status) {
-				alert("card as alredy been use");
+				alert("Card has already been used by you");
 			} else {
 				findCard.status = true;
+				display();
+				alert("Card Load Successsfully");
 			}
-		} else {
-			alert("invalid card");
+        }
+        else if (!elem.printRef === !rechargeInput.value) {
+            alert("invalid card")
+            return
 		}
 	});
-	display();
-	// findCard.status = true;
-	// if (findCard.status) {
-	// 	alert("card as alredy been use");
-	// } else {
-
-	// }
-
-	console.log(data);
+	
 }
