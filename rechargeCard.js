@@ -118,7 +118,7 @@ function rechargeCard() {
 			}
         }
         else if (!elem.printRef === !rechargeInput.value) {
-            alert("invalid card")
+            alert("invalid Pin")
             return
 		}
 	});
