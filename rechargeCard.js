@@ -4,7 +4,7 @@ let chooseAmount = document.getElementById("chooseAmount");
 let generatePinInput = document.getElementById("generatePinInput");
 let chooseNetwork = document.getElementById("chooseNetwork");
 let rechargeInput = document.getElementById("rechargeInput");
-// let staticBackdrop = document.getElementById("staticBackdrop");
+
 let provider = {
 	MTN: "*555*",
 	GLO: "*123",
@@ -16,6 +16,7 @@ let dd = today.getDate();
 let mm = today.getMonth();
 let yy = today.getFullYear();
 let data = [];
+
 
 // TO GET RANDOM NUMBER
 function getRandom() {
