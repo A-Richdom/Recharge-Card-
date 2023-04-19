@@ -51,24 +51,6 @@ function savePin() {
 		return;
 	}
 
-	// let printRef;
-
-	// if (chooseNetwork.value == "airtel") {
-	// 	printRef = `*126*${generatePinInput.value}#`;
-	// }
-
-	// if (chooseNetwork.value == "mtn") {
-	// 	printRef = `*555*${generatePinInput.value}#`;
-	// }
-
-	// if (chooseNetwork.value == "glo") {
-	// 	printRef = `*123*${generatePinInput.value}#`;
-	// }
-
-	// if (chooseNetwork.value == "etisalat") {
-	// 	printRef = `*222*${generatePinInput.value}#`;
-	// }
-
     let rechargeData = {
         network: chooseNetwork.value,
         amount: chooseAmount.value,
