@@ -1,6 +1,5 @@
 let tableDisplay = document.getElementById("tableDisplay");
 let chooseAmount = document.getElementById("chooseAmount");
-// let getRandom = document.getElementById('getRandom')
 let generatePinInput = document.getElementById("generatePinInput");
 let chooseNetwork = document.getElementById("chooseNetwork");
 let rechargeInput = document.getElementById("rechargeInput");
