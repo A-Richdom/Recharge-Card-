@@ -4,19 +4,23 @@ let chooseAmount = document.getElementById("chooseAmount");
 let generatePinInput = document.getElementById("generatePinInput");
 let chooseNetwork = document.getElementById("chooseNetwork");
 let rechargeInput = document.getElementById("rechargeInput");
-let staticBackdrop = document.getElementById("staticBackdrop");
+// let staticBackdrop = document.getElementById("staticBackdrop");
+let provider = {
+	MTN: "*555*",
+	GLO: "*123",
+	AIRTEL: "*126*",
+	ETISALAT: "*222*",
+};
 let today = new Date();
 let dd = today.getDate();
 let mm = today.getMonth();
 let yy = today.getFullYear();
 let data = [];
 
-
 // TO GET RANDOM NUMBER
 function getRandom() {
 	return Math.floor(Math.random() * 10000000000);
 }
-
 
 // TO GENERATE PIN
 function generatePin() {
@@ -39,47 +43,45 @@ function display() {
 	});
 }
 
-
-// TO SAVE PIN TO THE BELOW TABLE 
+// TO SAVE PIN TO THE BELOW TABLE
 function savePin() {
-    if (generatePinInput.value == '') {
-        tableDisplay.innerHTML = ''
-        alert('You have Nothing to Save')
-        return
-    }
-    
-    let printRef;
-	
-	if (chooseNetwork.value == "airtel") {
-		printRef = `*126*${generatePinInput.value}#`;
+	if (generatePinInput.value == "") {
+		tableDisplay.innerHTML = "";
+		alert("You have Nothing to Save");
+		return;
 	}
 
-	if (chooseNetwork.value == "mtn") {
-		printRef = `*555*${generatePinInput.value}#`;
-	}
+	// let printRef;
 
-	if (chooseNetwork.value == "glo") {
-		printRef = `*123*${generatePinInput.value}#`;
-	}
+	// if (chooseNetwork.value == "airtel") {
+	// 	printRef = `*126*${generatePinInput.value}#`;
+	// }
 
-	if (chooseNetwork.value == "etisalat") {
-		printRef = `*222*${generatePinInput.value}#`;
-    }
-    
+	// if (chooseNetwork.value == "mtn") {
+	// 	printRef = `*555*${generatePinInput.value}#`;
+	// }
+
+	// if (chooseNetwork.value == "glo") {
+	// 	printRef = `*123*${generatePinInput.value}#`;
+	// }
+
+	// if (chooseNetwork.value == "etisalat") {
+	// 	printRef = `*222*${generatePinInput.value}#`;
+	// }
+
     let rechargeData = {
-			network: chooseNetwork.value,
-			amount: chooseAmount.value,
-			pin: generatePinInput.value,
-			printRef: printRef,
-			date: dd + "/" + mm + "/" + yy,
-			status: false,
-		};
+        network: chooseNetwork.value,
+        amount: chooseAmount.value,
+        pin: generatePinInput.value,
+        printRef: `${provider[chooseNetwork.value]}${generatePinInput.value}#`,
+		date: dd + "/" + mm + "/" + yy,
+		status: false,
+	};
 
-		data.push(rechargeData);
-	
+	data.push(rechargeData);
+
 	display();
-};
-
+}
 
 // TO DELETE EACH ROW
 function Del(index) {
@@ -87,28 +89,24 @@ function Del(index) {
 	display();
 }
 
-
 // TO RECHARGE CARD
 function rechargeCard() {
-    
 	if (!rechargeInput.value) {
 		alert("Input Recharge Card");
-        // staticBackdrop.innerHTML
+		// staticBackdrop.innerHTML
 	}
 
-    let findCard = data.find((elem) => elem.printRef === rechargeInput.value);
-    // if (!findCard) return
-    // staticBackdrop.innerHTML;
-    // alert('invalid card')
-    // if (!printRef == rechargeInput.value) {
-    //     alert("Invalid Card");
-    //     return
+	let findCard = data.find((elem) => elem.printRef === rechargeInput.value);
+	// if (!findCard) return
+	// staticBackdrop.innerHTML;
+	// alert('invalid card')
+	// if (!printRef == rechargeInput.value) {
+	//     alert("Invalid Card");
+	//     return
 	// 	}
-		
 
-    data.forEach((elem) => {
-      
-        if (elem.printRef === rechargeInput.value) {
+	data.forEach((elem) => {
+		if (elem.printRef === rechargeInput.value) {
 			if (findCard.status) {
 				alert("Card has already been used by you");
 			} else {
@@ -116,11 +114,9 @@ function rechargeCard() {
 				display();
 				alert("Card Load Successsfully");
 			}
-        }
-        else if (!elem.printRef === !rechargeInput.value) {
-            alert("invalid Pin")
-            return
+		} else if (!elem.printRef === !rechargeInput.value) {
+			alert("invalid Pin");
+			return;
 		}
 	});
-	
 }
