@@ -66,9 +66,9 @@
                     <p class="fs-4 fw-bold text-primary">Generate Pin</p>
                     <input class="form-control bg-primary text-white w-100 text-black" type="text" name="" id="generatePinInput" placeholder="Pin" required>
                 </div>
-                <div class="btns container col-12 col-sm-7 mt-3 d-flex ">
-                    <button class="col-sm-12 col-md-6  bg-success  text-white p-1 border border-0" onclick="generatePin()">GENERATE PIN</button>
-                    <button class="col-sm-12 col-md-6  bg-warning p-1 border border-0" onclick="savePin()">SAVE PIN</button>
+                <div class="btns container  mt-3 d-flex">
+                    <button class=" col-md-  bg-success  text-white p-1 border border-0" onclick="generatePin()">GENERATE PIN</button>
+                    <button class="col-sm- col-md-  bg-warning p-1 border border-0" onclick="savePin()">SAVE PIN</button>
 
                     
                 
@@ -106,26 +106,30 @@
             </section>    
         </section>
 
-        <section class="history col-12 overflow-scroll">
-            <div class="text-center bg-warning">
+        <section class="history">
+            <div class="text-center bg-warning ">
                 <p class="fs-3">History</p>
             </div>
-            <table class="table  table-bordered table-striped-columns bg-secondary">
-                <thead>
-                    <tr>
-                        <th scope="col">S/N</th>
-                        <th scope="col">NETWORK PROVIDER</th>
-                        <th scope="col">AMOUNT</th>
-                        <th scope="col">PIN</th>
-                        <th scope="col">PRINTREF</th>
-                        <th scope="col">DATE PRINTED</th>
-                        <th scope="col">STATUS</th>
-                        <th scope="col">DELETE</button></th>
-                    </tr>
-                </thead>
-                <tbody id="tableDisplay"></tbody>
-            </table>
+            <div class="overflow-scroll">
+                <table class="table  table-bordered table-striped-columns bg-secondary  overflow-scroll">
+                    <thead>
+                        <tr>
+                            <th scope="col">S/N</th>
+                            <th scope="col">NETWORK PROVIDER</th>
+                            <th scope="col">AMOUNT</th>
+                            <th scope="col">PIN</th>
+                            <th scope="col">PRINTREF</th>
+                            <th scope="col">DATE PRINTED</th>
+                            <th scope="col">STATUS</th>
+                            <th scope="col">DELETE</button></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableDisplay"></tbody>
+                </table>
 
+
+            </div>
+            
 
         </section>
 
