@@ -14,8 +14,9 @@ let today = new Date();
 let dd = today.getDate();
 let mm = today.getMonth();
 let yy = today.getFullYear();
-let data = [];
 
+let data = JSON.parse(localStorage.getItem("rechargeData"))
+// data.push(JSON.parse(localStorage.getItem("rechargeData")));
 
 // TO GET RANDOM NUMBER
 function getRandom() {
@@ -24,13 +25,20 @@ function getRandom() {
 
 // TO GENERATE PIN
 function generatePin() {
-	generatePinInput.value = getRandom();
+	if (!chooseAmount.value || !chooseNetwork.value) {
+		alert("Fill in the boxes above");
+	} else {
+		generatePinInput.value = getRandom();
+	}
 }
 
 function display() {
 	tableDisplay.innerHTML = "";
-	data.forEach(function (element, index) {
-		tableDisplay.innerHTML += `<tr>
+	const dataFromStorage = JSON.parse(localStorage.getItem("rechargeData"));
+	
+	
+		dataFromStorage.forEach((element, index) => {
+			tableDisplay.innerHTML += `<tr>
 							<th scope='row'>${index + 1}</th>
 							<td>${element.network}</td>
 							<td>${element.amount}</td>
@@ -40,63 +48,71 @@ function display() {
 							<td>${!element.status ? `<span>UNUSED</span>` : `<span>USED</span>`}</td>
 							<td><button class="bg-danger" onclick="Del(${index})">DELETE</button></td>
 						</tr>`;
-	});
+		});
 }
 
+display();
 // TO SAVE PIN TO THE BELOW TABLE
 function savePin() {
 	if (generatePinInput.value == "") {
-		tableDisplay.innerHTML = "";
 		alert("You have Nothing to Save");
-		return;
+	} else {
+		let rechargeData = {
+			network: chooseNetwork.value,
+			amount: chooseAmount.value,
+			pin: generatePinInput.value,
+			printRef: `${provider[chooseNetwork.value]}${generatePinInput.value}#`,
+			date: dd + "/" + mm + "/" + yy,
+			status: false,
+		};
+
+		data.push(rechargeData);
+		localStorage.setItem("rechargeData", JSON.stringify(data));
+		generatePinInput.value = "";
+		chooseAmount.value = "";
+		chooseNetwork.value = "";
+
+		display();
 	}
-
-    let rechargeData = {
-        network: chooseNetwork.value,
-        amount: chooseAmount.value,
-        pin: generatePinInput.value,
-        printRef: `${provider[chooseNetwork.value]}${generatePinInput.value}#`,
-		date: dd + "/" + mm + "/" + yy,
-		status: false,
-	};
-
-	data.push(rechargeData);
-
-	display();
 }
 
 // TO DELETE EACH ROW
 function Del(index) {
 	data.splice(index, 1);
 	display();
+	
 }
 
 // TO RECHARGE CARD
 function rechargeCard() {
 	if (!rechargeInput.value) {
-		alert("Input Recharge Card");
-		// staticBackdrop.innerHTML
+		alert("Input Recharge Code");
 	}
 
-	let findCard = data.find((elem) => elem.printRef === rechargeInput.value);
-	// if (!findCard) return
-	// if (!printRef == rechargeInput.value) {
-	//     alert("Invalid Card");
-	//     return
-	// 	}
+	let dataFromStorage = JSON.parse(localStorage.getItem("rechargeData"));
 
-	data.forEach((elem) => {
-		if (elem.printRef === rechargeInput.value) {
-			if (findCard.status) {
-				alert("Card has already been used by you");
-			} else {
-				findCard.status = true;
-				display();
-				alert("Card Load Successsfully");
+	const codeExist = dataFromStorage.filter(
+		(item) => item.printRef === rechargeInput.value
+	);
+
+	console.log(codeExist);
+
+	if (codeExist.length > 0) {
+		dataFromStorage.forEach((elem) => {
+			if (elem.printRef === rechargeInput.value) {
+				if (elem.status) {
+					alert("Card has already been used by you");
+				} else {
+					elem.status = true;
+					alert("Card Load Successsfully");
+				}
 			}
-		} else if (!elem.printRef === !rechargeInput.value) {
-			alert("invalid Pin");
-			return;
-		}
-	});
+		});
+	} else {
+		alert("invalid Pin");
+		return;
+	}
+
+	localStorage.setItem("rechargeData", JSON.stringify(dataFromStorage));
+	display();
 }
